@@ -11,21 +11,35 @@ const images = [
     'https://images.unsplash.com/photo-1600585153490-76fb20a32601?auto=format&fit=crop&w=1000&q=80',
     'https://images.unsplash.com/photo-1512915922686-57c11dde9b6b?auto=format&fit=crop&w=1000&q=80',
     'https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=1000&q=80',
-    'https://images.unsplash.com/photo-1600607686527-6fb886090705?auto=format&fit=crop&w=1000&q=80'
+    'https://images.unsplash.com/photo-1600607686527-6fb886090705?auto=format&fit=crop&w=1000&q=80',
+    'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1000&q=80',
+    'https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=1000&q=80',
+    'https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=1000&q=80',
+    'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1000&q=80',
+    'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1000&q=80',
+    'https://images.unsplash.com/photo-1576941089067-2de3c901e126?auto=format&fit=crop&w=1000&q=80',
+    'https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&w=1000&q=80',
 ];
 
 const cities = [
     "Beverly Hills, CA", "Malibu, CA", "Atherton, CA", "Aspen, CO", 
     "Miami Beach, FL", "Palm Beach, FL", "New York, NY", "Hamptons, NY",
     "Jackson Hole, WY", "Paradise Valley, AZ", "Montecito, CA", "Greenwich, CT",
-    "Bel Air, CA", "Naples, FL", "Boca Raton, FL", "Park City, UT"
+    "Bel Air, CA", "Naples, FL", "Boca Raton, FL", "Park City, UT",
+    "Scottsdale, AZ", "Napa Valley, CA", "Lake Tahoe, NV", "Coral Gables, FL",
+    "Santa Barbara, CA", "Sedona, AZ", "Sarasota, FL", "Hilton Head, SC",
+    "Seattle, WA", "Carmel-by-the-Sea, CA", "Telluride, CO", "Charleston, SC",
+    "Newport Beach, CA", "Dana Point, CA"
 ];
 
 const streets = [
     "Ocean Blvd", "Summit Dr", "Billionaires Row", "Pacific Coast Hwy",
     "Rodeo Dr", "Sunset Blvd", "Fifth Ave", "Park Ave", "Mulholland Dr",
     "Bayside Way", "Alpine Court", "Estate Drive", "Golden Coast Rd",
-    "Diamond Terrace", "Whispering Pines", "Crystal Cove", "Majestic Trail"
+    "Diamond Terrace", "Whispering Pines", "Crystal Cove", "Majestic Trail",
+    "Vineyard View Ln", "Ridgeline Rd", "Harbor Point Ct", "Skyline Terrace",
+    "Canyon Crest Dr", "Cliffside Way", "Lakewood Blvd", "Sunrise Canyon",
+    "Emerald Isle Dr", "Coral Ridge Ave", "Bluewater Cove", "Prestige Pkwy"
 ];
 
 const generateProperties = (count) => {
@@ -60,13 +74,23 @@ const generateProperties = (count) => {
     return props;
 };
 
-// Start with the 6 baseline curated ones, then append 54 generated variants
+// Start with the 16 baseline curated ones, then append 94 generated variants
 export const featuredProperties = [
-    { id: 'prop-m1', address: '142 Emerald Bay, Laguna Beach, CA', price: '$8,250,000', beds: 4, baths: 5, sqft: '4,200', type: 'For Sale', img: 'https://images.unsplash.com/photo-1613490901258-0ce3397ddc8a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80' },
-    { id: 'prop-m2', address: '12 Penthouse, New York, NY', price: '$6,400,000', beds: 3, baths: 3.5, sqft: '3,100', type: 'For Sale', img: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80' },
-    { id: 'prop-m3', address: '88 Lakefront Dr, Tahoe, NV', price: '$4,150,000', beds: 5, baths: 4, sqft: '4,850', type: 'For Sale', img: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80' },
-    { id: 'prop-m4', address: '304 Ocean Blvd, Miami, FL', price: '$12,900,000', beds: 6, baths: 7, sqft: '8,500', type: 'For Sale', img: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80' },
-    { id: 'prop-m5', address: 'Alpine Retreat, Aspen, CO', price: '$9,750,000', beds: 5, baths: 6.5, sqft: '6,200', type: 'For Sale', img: 'https://images.unsplash.com/photo-1510798831971-661eb04b3739?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80' },
-    { id: 'prop-m6', address: 'Modern Villa, Austin, TX', price: '$3,850,000', beds: 4, baths: 4, sqft: '3,900', type: 'For Rent', img: 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80' },
-    ...generateProperties(54)
+    { id: 'prop-m1',  address: '142 Emerald Bay, Laguna Beach, CA',        price: '$8,250,000',  beds: 4, baths: 5,   sqft: '4,200', type: 'For Sale', img: 'https://images.unsplash.com/photo-1613490901258-0ce3397ddc8a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80' },
+    { id: 'prop-m2',  address: '12 Penthouse, New York, NY',               price: '$6,400,000',  beds: 3, baths: 3.5, sqft: '3,100', type: 'For Sale', img: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80' },
+    { id: 'prop-m3',  address: '88 Lakefront Dr, Tahoe, NV',               price: '$4,150,000',  beds: 5, baths: 4,   sqft: '4,850', type: 'For Sale', img: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80' },
+    { id: 'prop-m4',  address: '304 Ocean Blvd, Miami, FL',                price: '$12,900,000', beds: 6, baths: 7,   sqft: '8,500', type: 'For Sale', img: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80' },
+    { id: 'prop-m5',  address: 'Alpine Retreat, Aspen, CO',                price: '$9,750,000',  beds: 5, baths: 6.5, sqft: '6,200', type: 'For Sale', img: 'https://images.unsplash.com/photo-1510798831971-661eb04b3739?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80' },
+    { id: 'prop-m6',  address: 'Modern Villa, Austin, TX',                 price: '$3,850,000',  beds: 4, baths: 4,   sqft: '3,900', type: 'For Rent', img: 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80' },
+    { id: 'prop-m7',  address: '27 Vineyard View Ln, Napa Valley, CA',     price: '$5,600,000',  beds: 4, baths: 4.5, sqft: '4,100', type: 'For Sale', img: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80' },
+    { id: 'prop-m8',  address: '990 Ridgeline Rd, Scottsdale, AZ',         price: '$7,200,000',  beds: 6, baths: 6,   sqft: '7,300', type: 'For Sale', img: 'https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80' },
+    { id: 'prop-m9',  address: '15 Harbor Point Ct, Seattle, WA',          price: '$4,800,000',  beds: 5, baths: 5,   sqft: '5,400', type: 'For Sale', img: 'https://images.unsplash.com/photo-1523217582562-09d0def993a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80' },
+    { id: 'prop-m10', address: '3 Skyline Terrace, Telluride, CO',         price: '$11,500,000', beds: 7, baths: 8,   sqft: '9,100', type: 'For Sale', img: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80' },
+    { id: 'prop-m11', address: '501 Cliffside Way, Carmel-by-the-Sea, CA', price: '$6,900,000',  beds: 4, baths: 4.5, sqft: '3,750', type: 'For Sale', img: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80' },
+    { id: 'prop-m12', address: '77 Bluewater Cove, Newport Beach, CA',     price: '$14,200,000', beds: 6, baths: 7.5, sqft: '8,900', type: 'For Sale', img: 'https://images.unsplash.com/photo-1576941089067-2de3c901e126?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80' },
+    { id: 'prop-m13', address: '220 Coral Ridge Ave, Dana Point, CA',      price: '$5,100,000',  beds: 4, baths: 4,   sqft: '4,500', type: 'For Rent', img: 'https://images.unsplash.com/photo-1449844908441-8829872d2607?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80' },
+    { id: 'prop-m14', address: '8 Prestige Pkwy, Santa Barbara, CA',       price: '$8,750,000',  beds: 5, baths: 5.5, sqft: '5,800', type: 'For Sale', img: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80' },
+    { id: 'prop-m15', address: '340 Canyon Crest Dr, Sedona, AZ',          price: '$3,450,000',  beds: 3, baths: 3.5, sqft: '3,200', type: 'For Sale', img: 'https://images.unsplash.com/photo-1628014949576-809cc01a3028?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80' },
+    { id: 'prop-m16', address: '19 Emerald Isle Dr, Charleston, SC',       price: '$4,350,000',  beds: 5, baths: 4.5, sqft: '4,650', type: 'For Sale', img: 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80' },
+    ...generateProperties(94)
 ];
