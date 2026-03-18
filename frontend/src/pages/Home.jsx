@@ -75,7 +75,7 @@ const Home = () => {
               <input 
                 type="text" 
                 className="search-input" 
-                placeholder="Enter city, neighborhood, or zip code..." 
+                placeholder="Search by city, neighborhood, or address..." 
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
