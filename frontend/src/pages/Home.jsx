@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Search, MapPin, BedDouble, Bath, Square, Heart, ArrowRight } from 'lucide-react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { featuredProperties } from '../data/mockProperties';
@@ -10,10 +10,42 @@ const Home = () => {
   const queryParams = new URLSearchParams(location.search);
   const mode = queryParams.get('mode');
 
+  const [searchQuery, setSearchQuery] = useState('');
+  const [displayedProperties, setDisplayedProperties] = useState(featuredProperties);
+
+  // Apply default filters for Mode (Buy vs Rent)
+  useEffect(() => {
+    let filtered = featuredProperties;
+    if (mode === 'buy') {
+      filtered = featuredProperties.filter(p => p.type === 'For Sale');
+    } else if (mode === 'rent') {
+      filtered = featuredProperties.filter(p => p.type === 'For Rent');
+    }
+    setDisplayedProperties(filtered);
+    setSearchQuery(''); // Reset search when mode changes
+  }, [mode]);
+
   const handleSearch = (e) => {
     e.preventDefault();
-    // Simulate routing to a map search view
-    console.log("Searching properties...");
+    if (!searchQuery.trim()) {
+      // If empty search, revert to mode filters
+      let baseFilter = featuredProperties;
+      if (mode === 'buy') baseFilter = featuredProperties.filter(p => p.type === 'For Sale');
+      if (mode === 'rent') baseFilter = featuredProperties.filter(p => p.type === 'For Rent');
+      setDisplayedProperties(baseFilter);
+      return;
+    }
+
+    const query = searchQuery.toLowerCase();
+    const results = featuredProperties.filter(property => {
+      // If mode is active, only search within that mode
+      if (mode === 'buy' && property.type !== 'For Sale') return false;
+      if (mode === 'rent' && property.type !== 'For Rent') return false;
+      
+      return property.address.toLowerCase().includes(query);
+    });
+    
+    setDisplayedProperties(results);
   };
 
   let title = "Discover Your Perfect Space";
@@ -44,6 +76,8 @@ const Home = () => {
                 type="text" 
                 className="search-input" 
                 placeholder="Enter city, neighborhood, or zip code..." 
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
               />
             </div>
             <button type="submit" className="btn btn-primary search-button hover-lift">
@@ -60,11 +94,17 @@ const Home = () => {
             <h2 className="section-title">Exclusive Listings</h2>
             <p className="section-subtitle">Curated properties that define luxury living.</p>
           </div>
-          <a href="#" className="view-all-link">View all properties <ArrowRight size={20} /></a>
+          <div className="view-all-link">
+            {displayedProperties.length} {displayedProperties.length === 1 ? 'Listing' : 'Listings'} Found
+          </div>
         </div>
 
         <div className="property-grid slide-up" style={{ animationDelay: '0.4s' }}>
-          {featuredProperties.map(property => (
+          {displayedProperties.length === 0 ? (
+            <div style={{ padding: '3rem', textAlign: 'center', color: 'var(--text-secondary)', gridColumn: '1 / -1' }}>
+              No properties matched your search. Try adjusting the query!
+            </div>
+          ) : displayedProperties.map(property => (
             <div key={property.id} className="property-card hover-lift" onClick={() => navigate(`/property/${property.id}`)}>
               <div className="property-image-container">
                 <img src={property.img} alt={property.address} className="property-image" />
