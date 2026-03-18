@@ -12,10 +12,10 @@ const Navbar = () => {
         </Link>
         
         <nav className="navbar-links">
-          <Link to="/" className="nav-link">Buy</Link>
-          <Link to="/" className="nav-link">Rent</Link>
-          <Link to="/" className="nav-link">Sell</Link>
-          <Link to="/" className="nav-link">Valuation</Link>
+          <Link to="/?mode=buy" className="nav-link">Buy</Link>
+          <Link to="/?mode=rent" className="nav-link">Rent</Link>
+          <Link to="/dashboard" className="nav-link">Sell</Link>
+          <Link to="/property/prop1" className="nav-link">Valuation</Link>
         </nav>
         
         <div className="navbar-actions flex items-center gap-4">

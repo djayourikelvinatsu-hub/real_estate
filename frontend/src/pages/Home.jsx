@@ -1,16 +1,29 @@
 import React from 'react';
 import { Search, MapPin, BedDouble, Bath, Square, Heart, ArrowRight } from 'lucide-react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import './Home.css';
 
 const Home = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const mode = queryParams.get('mode');
 
   const handleSearch = (e) => {
     e.preventDefault();
     // Simulate routing to a map search view
     console.log("Searching properties...");
   };
+
+  let title = "Discover Your Perfect Space";
+  let subtitle = "Premium real estate experiences with advanced valuation insights.";
+  if (mode === 'buy') {
+    title = "Find Your Dream Home";
+    subtitle = "Explore luxury properties for sale in exclusive neighborhoods.";
+  } else if (mode === 'rent') {
+    title = "Luxury Rentals Unlocked";
+    subtitle = "Discover premium rental properties tailored to your lifestyle.";
+  }
 
   const featuredProperties = [
     { id: 'prop1', address: '142 Emerald Bay, Laguna Beach, CA', price: '$8,250,000', beds: 4, baths: 5, sqft: '4,200', type: 'For Sale', img: 'https://images.unsplash.com/photo-1613490901258-0ce3397ddc8a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80' },
@@ -24,8 +37,8 @@ const Home = () => {
       {/* Hero Section */}
       <section className="hero-section">
         <div className="hero-content slide-up">
-          <h1 className="hero-title">Discover Your Perfect Space</h1>
-          <p className="hero-subtitle">Premium real estate experiences with advanced valuation insights.</p>
+          <h1 className="hero-title">{title}</h1>
+          <p className="hero-subtitle">{subtitle}</p>
           
           <form className="search-container slide-up" style={{ animationDelay: '0.2s' }} onSubmit={handleSearch}>
             <div className="search-input-wrapper">
