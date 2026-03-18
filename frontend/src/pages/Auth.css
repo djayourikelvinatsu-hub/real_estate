@@ -1,0 +1,119 @@
+.auth-page {
+  min-height: calc(100vh - 80px); /* Adjust based on navbar height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: linear-gradient(rgba(15, 23, 42, 0.6), rgba(15, 23, 42, 0.8)), url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
+  background-size: cover;
+  background-position: center;
+  padding: 2rem;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 480px;
+  padding: 3rem;
+  border-radius: var(--radius-xl);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  color: white; /* Force white text over dark background */
+}
+
+.auth-card h2 {
+  color: white;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.auth-input {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background-color: rgba(0, 0, 0, 0.2);
+  color: white;
+  font-family: 'Inter', sans-serif;
+  transition: all var(--transition-fast);
+}
+
+.auth-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.auth-input:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+  background-color: rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+}
+
+.auth-card .btn-primary {
+  margin-top: 1rem;
+  padding: 1rem;
+  font-size: 1.1rem;
+  border-radius: var(--radius-md);
+}
+
+.auth-switch {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.switch-btn {
+  color: var(--accent-hover);
+  font-weight: 600;
+  cursor: pointer;
+  transition: color var(--transition-fast);
+}
+
+.switch-btn:hover {
+  color: #93c5fd; /* Lighter blue */
+  text-decoration: underline;
+}
+
+.role-toggle {
+  display: flex;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: var(--radius-md);
+  padding: 0.25rem;
+  margin-bottom: 1rem;
+}
+
+.role-btn {
+  flex: 1;
+  padding: 0.5rem;
+  text-align: center;
+  border-radius: var(--radius-sm);
+  color: rgba(255, 255, 255, 0.7);
+  transition: all 0.2s;
+}
+
+.role-btn.active {
+  background: var(--accent-primary);
+  color: white;
+  box-shadow: var(--shadow-sm);
+}
