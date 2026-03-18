@@ -45,7 +45,13 @@ const ReportViewer = () => {
         <div className="target-property">
           <h1 className="target-address">142 Emerald Bay</h1>
           <p style={{ fontSize: '1.2rem', color: '#666' }}>Laguna Beach, CA 92651</p>
-          
+
+          <img
+            src="https://images.unsplash.com/photo-1613490901258-0ce3397ddc8a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+            alt="142 Emerald Bay"
+            style={{ width: '100%', borderRadius: '12px', marginTop: '1.5rem', objectFit: 'cover', maxHeight: '360px' }}
+          />
+
           <div style={{ marginTop: '2rem' }}>
             <div style={{ textTransform: 'uppercase', letterSpacing: '1px', fontSize: '0.9rem', color: '#666' }}>Estimated Market Value</div>
             <div className="avm-value">$8,400,000</div>
