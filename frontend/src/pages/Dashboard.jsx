@@ -1,10 +1,42 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { Home, MessageSquare, Settings, Plus, LayoutDashboard, Edit, Trash2, X, CheckCircle } from 'lucide-react';
 import './Dashboard.css';
 
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState('dashboard');
   const [showModal, setShowModal] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState({
+    title: '', description: '', price: '', listing_type: 'For Sale',
+    property_type: 'House', address: '', city: '', state: '', zip_code: '',
+    bedrooms: '', bathrooms: '', sqft: '', main_image_url: ''
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleAddProperty = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    try {
+      await axios.post('http://localhost:8000/api/properties.php', formData);
+      setShowModal(false);
+      alert('Property added successfully!');
+      setFormData({
+        title: '', description: '', price: '', listing_type: 'For Sale',
+        property_type: 'House', address: '', city: '', state: '', zip_code: '',
+        bedrooms: '', bathrooms: '', sqft: '', main_image_url: ''
+      });
+    } catch (error) {
+      console.error('Error adding property:', error);
+      alert('Failed to add property. Make sure the backend is running at localhost:8000.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
   
   // Mock data for listings
   const listings = [
@@ -125,18 +157,82 @@ const Dashboard = () => {
           zIndex: 9999, padding: '1rem'
         }}>
           <div className="glass-panel fade-in" style={{
-            width: '100%', maxWidth: '500px', padding: '2rem',
-            backgroundColor: 'var(--bg-secondary)', position: 'relative', textAlign: 'center'
+            width: '100%', maxWidth: '600px', padding: '2rem',
+            backgroundColor: 'var(--bg-secondary)', position: 'relative', 
+            maxHeight: '90vh', overflowY: 'auto'
           }}>
             <button onClick={() => setShowModal(false)} style={{ position: 'absolute', top: '1.5rem', right: '1.5rem' }}>
               <X size={24} />
             </button>
-            <CheckCircle size={48} color="var(--accent-primary)" style={{ margin: '0 auto 1.5rem' }} />
-            <h2 style={{ marginBottom: '1rem' }}>Backend Integration Required</h2>
-            <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem', lineHeight: '1.6' }}>
-              We've prepared the frontend UI perfectly, but to save a new property, you need to execute the <strong>Integration & Testing</strong> phase by connecting the frontend React Axios calls to the `properties.php` endpoint we wrote.
-            </p>
-            <button className="btn btn-primary" onClick={() => setShowModal(false)} style={{ width: '100%' }}>Understood</button>
+            <h2 style={{ marginBottom: '1.5rem', textAlign: 'center' }}>Add New Property</h2>
+            <form onSubmit={handleAddProperty} style={{ display: 'flex', flexDirection: 'column', gap: '1rem', textAlign: 'left' }}>
+              <div>
+                <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 500 }}>Title</label>
+                <input type="text" name="title" value={formData.title} onChange={handleInputChange} required className="search-input" style={{ width: '100%', border: '1px solid var(--border-color)' }} placeholder="e.g. Modern Apartment in Downtown" />
+              </div>
+              <div style={{ display: 'flex', gap: '1rem' }}>
+                <div style={{ flex: 1 }}>
+                  <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 500 }}>Price</label>
+                  <input type="number" name="price" value={formData.price} onChange={handleInputChange} required className="search-input" style={{ width: '100%', border: '1px solid var(--border-color)' }} placeholder="e.g. 450000" />
+                </div>
+                <div style={{ flex: 1 }}>
+                  <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 500 }}>Listing Type</label>
+                  <select name="listing_type" value={formData.listing_type} onChange={handleInputChange} className="search-input" style={{ width: '100%', border: '1px solid var(--border-color)', backgroundColor: 'transparent', color: 'inherit' }}>
+                    <option value="For Sale" style={{color: '#000'}}>For Sale</option>
+                    <option value="For Rent" style={{color: '#000'}}>For Rent</option>
+                  </select>
+                </div>
+              </div>
+              <div style={{ display: 'flex', gap: '1rem' }}>
+                <div style={{ flex: 1 }}>
+                  <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 500 }}>Property Type</label>
+                  <select name="property_type" value={formData.property_type} onChange={handleInputChange} className="search-input" style={{ width: '100%', border: '1px solid var(--border-color)', backgroundColor: 'transparent', color: 'inherit' }}>
+                    <option value="House" style={{color: '#000'}}>House</option>
+                    <option value="Apartment" style={{color: '#000'}}>Apartment</option>
+                    <option value="Condo" style={{color: '#000'}}>Condo</option>
+                    <option value="Townhouse" style={{color: '#000'}}>Townhouse</option>
+                  </select>
+                </div>
+                <div style={{ flex: 1 }}>
+                  <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 500 }}>Bedrooms</label>
+                  <input type="number" name="bedrooms" value={formData.bedrooms} onChange={handleInputChange} required className="search-input" style={{ width: '100%', border: '1px solid var(--border-color)' }} placeholder="e.g. 3" />
+                </div>
+                <div style={{ flex: 1 }}>
+                  <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 500 }}>Bathrooms</label>
+                  <input type="number" name="bathrooms" value={formData.bathrooms} onChange={handleInputChange} required className="search-input" style={{ width: '100%', border: '1px solid var(--border-color)' }} placeholder="e.g. 2" />
+                </div>
+              </div>
+              <div>
+                <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 500 }}>Address</label>
+                <input type="text" name="address" value={formData.address} onChange={handleInputChange} required className="search-input" style={{ width: '100%', border: '1px solid var(--border-color)' }} placeholder="e.g. 123 Main St" />
+              </div>
+              <div style={{ display: 'flex', gap: '1rem' }}>
+                <div style={{ flex: 2 }}>
+                  <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 500 }}>City</label>
+                  <input type="text" name="city" value={formData.city} onChange={handleInputChange} required className="search-input" style={{ width: '100%', border: '1px solid var(--border-color)' }} placeholder="e.g. Austin" />
+                </div>
+                <div style={{ flex: 1 }}>
+                  <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 500 }}>State</label>
+                  <input type="text" name="state" value={formData.state} onChange={handleInputChange} required className="search-input" style={{ width: '100%', border: '1px solid var(--border-color)' }} placeholder="TX" />
+                </div>
+                <div style={{ flex: 1 }}>
+                  <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 500 }}>Zip Code</label>
+                  <input type="text" name="zip_code" value={formData.zip_code} onChange={handleInputChange} required className="search-input" style={{ width: '100%', border: '1px solid var(--border-color)' }} placeholder="78701" />
+                </div>
+              </div>
+              <div>
+                <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 500 }}>Main Image URL</label>
+                <input type="url" name="main_image_url" value={formData.main_image_url} onChange={handleInputChange} className="search-input" style={{ width: '100%', border: '1px solid var(--border-color)' }} placeholder="https://..." />
+              </div>
+              <div>
+                <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 500 }}>Description</label>
+                <textarea name="description" value={formData.description} onChange={handleInputChange} className="search-input" style={{ width: '100%', border: '1px solid var(--border-color)', minHeight: '80px', resize: 'vertical' }} placeholder="Property details..."></textarea>
+              </div>
+              
+              <button type="submit" className="btn btn-primary" style={{ width: '100%', marginTop: '1rem' }} disabled={isSubmitting}>
+                {isSubmitting ? 'Saving...' : 'Save Property'}
+              </button>
+            </form>
           </div>
         </div>
       )}
