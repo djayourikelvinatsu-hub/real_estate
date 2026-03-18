@@ -117,3 +117,22 @@
   color: white;
   box-shadow: var(--shadow-sm);
 }
+@media (max-width: 640px) {
+  .auth-card {
+    padding: 2rem 1.5rem;
+  }
+  
+  .auth-card h2 {
+    font-size: 1.8rem;
+  }
+  
+  .role-toggle {
+    flex-direction: column;
+    gap: 0.5rem;
+    background: transparent;
+  }
+  
+  .role-btn {
+    background: rgba(0, 0, 0, 0.3);
+  }
+}

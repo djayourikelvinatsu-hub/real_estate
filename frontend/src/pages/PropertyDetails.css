@@ -216,3 +216,46 @@
   border-radius: 50%;
   object-fit: cover;
 }
+@media (max-width: 768px) {
+  .property-header-info {
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+  }
+  
+  .price-section {
+    text-align: left;
+  }
+  
+  .title-section h1 {
+    font-size: 1.8rem;
+  }
+  
+  .price-value {
+    font-size: 2rem;
+  }
+  
+  .history-item {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .specs-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+  }
+  
+  .spec-box {
+    margin: 0;
+  }
+  
+  .section-block .flex {
+    flex-direction: column;
+  }
+  
+  .contact-card {
+    position: static;
+    margin-top: 2rem;
+  }
+}
