@@ -29,6 +29,9 @@ const Home = () => {
     { id: 'prop1', address: '142 Emerald Bay, Laguna Beach, CA', price: '$8,250,000', beds: 4, baths: 5, sqft: '4,200', type: 'For Sale', img: 'https://images.unsplash.com/photo-1613490901258-0ce3397ddc8a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80' },
     { id: 'prop2', address: '12 Penthouse, New York, NY', price: '$6,400,000', beds: 3, baths: 3.5, sqft: '3,100', type: 'For Sale', img: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80' },
     { id: 'prop3', address: '88 Lakefront Dr, Tahoe, NV', price: '$4,150,000', beds: 5, baths: 4, sqft: '4,850', type: 'For Sale', img: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80' },
+    { id: 'prop4', address: '304 Ocean Blvd, Miami, FL', price: '$12,900,000', beds: 6, baths: 7, sqft: '8,500', type: 'For Sale', img: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80' },
+    { id: 'prop5', address: 'Alpine Retreat, Aspen, CO', price: '$9,750,000', beds: 5, baths: 6.5, sqft: '6,200', type: 'For Sale', img: 'https://images.unsplash.com/photo-1510798831971-661eb04b3739?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80' },
+    { id: 'prop6', address: 'Modern Villa, Austin, TX', price: '$3,850,000', beds: 4, baths: 4, sqft: '3,900', type: 'For Rent', img: 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80' },
   ];
 
   return (
